@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <h1>Simple Test</h1>
+    <input type="text" id="test-input" value="What is Abaqus?" />
+    <button onclick="testSend()">Test Send</button>
+    <div id="result"></div>
+
+    <script>
+        async function testSend() {
+            console.log('Test send clicked');
+            const input = document.getElementById('test-input').value;
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = 'Sending...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question: input,
+                        top_k: 3,
+                        temperature: 0.2
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                resultDiv.innerHTML = 'Error: ' + error.message;
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>

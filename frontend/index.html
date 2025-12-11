@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbaqusGPT - AI Documentation Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔧 AbaqusGPT</h1>
+            <p class="subtitle">Your AI-powered Abaqus documentation assistant</p>
+        </header>
+
+        <div class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="welcome-message">
+                    <h2>Welcome!</h2>
+                    <p>I'm your Abaqus assistant. I can answer questions about Abaqus 2016, help with analysis setup, explain features, and guide you through workflows. I'll remember our conversation for better context!</p>
+                    <div class="example-questions">
+                        <p><strong>Try asking:</strong></p>
+                        <ul>
+                            <li>What is Abaqus?</li>
+                            <li>How do I define material properties?</li>
+                            <li>What's the difference between *STATIC and *DYNAMIC steps?</li>
+                            <li>Can you help me set up a contact analysis?</li>
+                            <li>What element types should I use for shell analysis?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <textarea 
+                    id="question-input" 
+                    placeholder="Ask a question about Abaqus..."
+                    rows="3"
+                ></textarea>
+                <button id="send-button" onclick="sendQuestion()">
+                    <span id="button-text">Send</span>
+                    <span id="loading-spinner" class="spinner" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p>AbaqusGPT • Powered by Ollama (llama3:8b) + RAG | <a href="http://localhost:8000/docs" target="_blank">API Docs</a></p>
+        </footer>
+    </div>
+
+    <script src="app.js?v=3"></script>
+    <script>
+        // Debug: Check if sendQuestion is defined
+        window.addEventListener('load', function() {
+            console.log('Page loaded');
+            console.log('sendQuestion function exists:', typeof sendQuestion);
+            if (typeof sendQuestion === 'undefined') {
+                console.error('ERROR: sendQuestion is not defined! Check browser cache.');
+                alert('Please clear browser cache (Ctrl+Shift+Delete) and reload (Ctrl+F5)');
+            }
+        });
+    </script>
+</body>
+</html>
